@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface UserDao {
 
-    void createUsersTable();
+    public void createUsersTable();
 
-    void dropUsersTable();
+    public void dropUsersTable();
 
-    void saveUser(String name, String lastName, byte age);
+    public void saveUser(String name, String lastName, byte age);
 
-    void removeUserById(long id);
+    public void removeUserById(long id);
 
-    List<User> getAllUsers() throws SQLException;
+    public List<User> getAllUsers() throws SQLException;
 
-    void cleanUsersTable();
+    public void cleanUsersTable();
 
 
 }

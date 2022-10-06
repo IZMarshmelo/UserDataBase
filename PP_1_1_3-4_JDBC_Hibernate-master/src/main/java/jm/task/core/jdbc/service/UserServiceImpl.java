@@ -21,7 +21,6 @@ public class UserServiceImpl implements UserService {
 
     public void saveUser(String name, String lastName, byte age) {
         userDao.saveUser(name, lastName, age);
-        System.out.println("User добавлен");
     }
 
     public void removeUserById(long id) {
@@ -30,9 +29,6 @@ public class UserServiceImpl implements UserService {
 
     public List<User> getAllUsers() throws SQLException {
         List<User> userList = userDao.getAllUsers();
-        for (User user : userList) {
-            System.out.println(user);
-        }
         return userList;
     }
 
