@@ -25,6 +25,7 @@ public class Main {
         userDao.cleanUsersTable();
         userDao.dropUsersTable();
 
+        Util.HibernateUtil.getSessionFactory();
         UserDao userDao2 = new UserDaoHibernateImpl();
 
         userDao2.createUsersTable();
