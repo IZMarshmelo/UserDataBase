@@ -24,7 +24,7 @@ public class UserDaoHibernateImpl implements UserDao  {
                 "(id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
                 "name VARCHAR(20) NOT NULL, lastName VARCHAR(20) NOT NULL, " +
                 "age TINYINT NOT NULL)")
-                .executeUpdate();
+                .addEntity(User.class);
 
         transaction.commit();
         session.close();
@@ -32,29 +32,20 @@ public class UserDaoHibernateImpl implements UserDao  {
 
     @Override
     public void dropUsersTable() {
-        Session session = getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-
-        session.createNativeQuery("DROP TABLE IF EXISTS users2")
-                .executeUpdate();
-
-        transaction.commit();
-        session.close();
+       try (Session session = getSessionFactory().openSession()) {
+           session.beginTransaction();
+           session.createNativeQuery("DROP TABLE IF EXISTS users2");
+           session.getTransaction().commit();
+       }
     }
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        Session session = getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-
-        session.createNativeQuery ( "INSERT INTO usersbase.users2 (name, lastName, age) VALUES (?, ?, ?)")
-                .setParameter(1, name)
-                .setParameter(2, lastName)
-                .setParameter(3, age)
-                .executeUpdate();
-
-        transaction.commit();
-        session.close();
+        try (Session session = getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.save(new User(name, lastName, age));
+            session.getTransaction().commit();
+        }
     }
 
     @Override
