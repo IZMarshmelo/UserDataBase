@@ -30,6 +30,10 @@ public class Main {
 
         userDao2.createUsersTable();
         userDao2.saveUser("Sonya", "Juravlova", (byte)22);
+        userDao2.saveUser("Ivan", "Lomakin", (byte) 40);
+        userDao2.saveUser("Vlad", "Lobachov", (byte) 30);
+        userDao2.saveUser("Jeorgii", "Hanov", (byte) 35);
+
 
         userDao2.removeUserById(1);
         userDao2.getAllUsers();
