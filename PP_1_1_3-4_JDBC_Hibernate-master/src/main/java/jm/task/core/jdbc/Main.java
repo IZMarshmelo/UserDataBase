@@ -1,27 +1,25 @@
 package jm.task.core.jdbc;
 
-import jm.task.core.jdbc.dao.UserDao;
-import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
-import jm.task.core.jdbc.util.Util;
-import java.sql.SQLException;
+import jm.task.core.jdbc.service.UserService;
+import jm.task.core.jdbc.service.UserServiceImpl;
+
 
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+    private static final UserService userService = new UserServiceImpl();
+    public static void main(String[] args) {
 
-        UserDao userDao2 = new UserDaoHibernateImpl();
-
-        userDao2.createUsersTable();
-        userDao2.saveUser("Sonya", "Juravlova", (byte) 22);
-        userDao2.saveUser("Ivan", "Lomakin", (byte) 40);
-        userDao2.saveUser("Vlad", "Lobachov", (byte) 30);
-        userDao2.saveUser("Jeorgii", "Hanov", (byte) 35);
+        userService.createUsersTable();
+        userService.saveUser("Sonya", "Juravlova", (byte) 22);
+        userService.saveUser("Ivan", "Lomakin", (byte) 40);
+        userService.saveUser("Vlad", "Lobachov", (byte) 30);
+        userService.saveUser("Jeorgii", "Hanov", (byte) 35);
 
 
-        userDao2.removeUserById(1);
-        userDao2.getAllUsers();
-        userDao2.cleanUsersTable();
-        userDao2.dropUsersTable();
+        userService.removeUserById(2);
+        userService.getAllUsers();
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
 
         // реализуйте алгоритм здесь
     }

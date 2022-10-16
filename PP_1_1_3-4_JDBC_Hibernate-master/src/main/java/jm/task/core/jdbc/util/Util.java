@@ -1,6 +1,7 @@
 package jm.task.core.jdbc.util;
 
 import jm.task.core.jdbc.model.User;
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
@@ -17,6 +18,7 @@ public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/usersbase";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
+    private static SessionFactory sessionFactory = null;
 
     public static Connection getConnection() {
         Connection connection = null;
@@ -30,10 +32,9 @@ public class Util {
     }
 
 
-    private static SessionFactory sessionFactory;
+    
 
     public static SessionFactory getSessionFactory() {
-        if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
 
@@ -58,10 +59,9 @@ public class Util {
                         .applySettings(configuration.getProperties()).build();
 
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-            } catch (Exception e) {
+            } catch (HibernateException e) {
                 e.printStackTrace();
             }
-        }
         return sessionFactory;
     }
 }
