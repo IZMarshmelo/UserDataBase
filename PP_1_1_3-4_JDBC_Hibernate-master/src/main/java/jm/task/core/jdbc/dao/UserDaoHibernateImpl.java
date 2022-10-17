@@ -9,7 +9,6 @@ import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
-import static jm.task.core.jdbc.util.Util.getSessionFactory;
 
 public class UserDaoHibernateImpl implements UserDao  {
     private final SessionFactory sessionFactory = Util.getSessionFactory();
