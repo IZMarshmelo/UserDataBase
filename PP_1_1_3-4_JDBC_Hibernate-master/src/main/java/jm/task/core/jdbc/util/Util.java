@@ -43,7 +43,7 @@ public class Util {
                 settings.put(Environment.URL, URL);
                 settings.put(Environment.USER, USERNAME);
                 settings.put(Environment.PASS, PASSWORD);
-                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
+                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 
                 settings.put(Environment.SHOW_SQL, "true");
 
